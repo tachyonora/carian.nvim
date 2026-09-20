@@ -3,136 +3,136 @@ local M = {}
 function M.highlights(colorscheme, config)
 	local bg = config.transparent and "NONE" or colorscheme.editorBackground
 	return {
-		background = { bg = bg },
-		buffer_visible = { fg = colorscheme.lineNumberText, bg = bg },
-		buffer_selected = {
+		BufferLineBackground = { bg = bg },
+		BufferLineBufferVisible = { fg = colorscheme.lineNumberText, bg = bg },
+		BufferLineBufferSelected = {
 			fg = colorscheme.mainText,
 			bg = colorscheme.editorBackground,
 		},
-		duplicate = {
+		BufferLineDuplicate = {
 			fg = colorscheme.mainText,
 			bg = bg,
 			italic = config.italics.bufferline or false,
 		},
-		duplicate_visible = {
+		BufferLineDuplicateVisible = {
 			fg = colorscheme.mainText,
 			bg = bg,
 			italic = config.italics.bufferline or false,
 		},
-		duplicate_selected = {
+		BufferLineDuplicateSelected = {
 			fg = colorscheme.mainText,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
 
-		tab = { fg = colorscheme.mainText, bg = bg },
-		tab_selected = {
+		BufferLineTab = { fg = colorscheme.mainText, bg = bg },
+		BufferLineTabSelected = {
 			fg = colorscheme.mainText,
 			bg = colorscheme.editorBackground,
 		},
-		tab_close = { fg = colorscheme.syntaxError, bg = bg },
-		indicator_selected = {
+		BufferLineTabClose = { fg = colorscheme.syntaxError, bg = bg },
+		BufferLineIndicatorSelected = {
 			fg = colorscheme.syntaxFunction,
 			bg = colorscheme.editorBackground,
 			bold = true,
 		},
 
-		separator = { fg = colorscheme.editorBackground, bg = bg },
-		separator_selected = {
+		BufferLineSeparator = { fg = colorscheme.editorBackground, bg = bg },
+		BufferLineSeparatorSelected = {
 			fg = colorscheme.editorBackground,
 			bg = colorscheme.editorBackground,
 		},
-		separator_visible = { fg = colorscheme.editorBackground, bg = bg },
-		offset_separator = { fg = colorscheme.editorBackground, bg = bg },
-		tab_separator = { fg = colorscheme.editorBackground, bg = bg },
-		tab_separator_selected = {
+		BufferLineSeparatorVisible = { fg = colorscheme.editorBackground, bg = bg },
+		BufferLineOffsetSeparator = { fg = colorscheme.editorBackground, bg = bg },
+		BufferLineTabSeparator = { fg = colorscheme.editorBackground, bg = bg },
+		BufferLineTabSeparatorSelected = {
 			fg = colorscheme.editorBackground,
 			bg = colorscheme.editorBackground,
 		},
 
-		close_button = { fg = colorscheme.lineNumberText, bg = bg },
-		close_button_visible = { fg = colorscheme.syntaxError, bg = bg },
-		close_button_selected = {
+		BufferLineCloseButton = { fg = colorscheme.lineNumberText, bg = bg },
+		BufferLineCloseButtonVisible = { fg = colorscheme.syntaxError, bg = bg },
+		BufferLineCloseButtonSelected = {
 			fg = colorscheme.syntaxError,
 			bg = colorscheme.editorBackground,
 		},
 
-		fill = { bg = bg },
+		BufferLineFill = { bg = bg },
 
-		numbers = { fg = colorscheme.lineNumberText, bg = bg },
-		numbers_visible = { fg = colorscheme.lineNumberText, bg = bg },
-		numbers_selected = {
+		BufferLineNumbers = { fg = colorscheme.lineNumberText, bg = bg },
+		BufferLineNumbersVisible = { fg = colorscheme.lineNumberText, bg = bg },
+		BufferLineNumbersSelected = {
 			fg = colorscheme.mainText,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
 
-		error = { fg = colorscheme.syntaxError, bg = bg },
-		error_visible = { fg = colorscheme.syntaxError, bg = bg },
-		error_selected = {
+		BufferLineError = { fg = colorscheme.syntaxError, bg = bg },
+		BufferLineErrorVisible = { fg = colorscheme.syntaxError, bg = bg },
+		BufferLineErrorSelected = {
 			fg = colorscheme.syntaxError,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
-		error_diagnostic = { fg = colorscheme.syntaxError, bg = bg },
-		error_diagnostic_visible = { fg = colorscheme.syntaxError, bg = bg },
-		error_diagnostic_selected = {
+		BufferLineErrorDiagnostic = { fg = colorscheme.syntaxError, bg = bg },
+		BufferLineErrorDiagnosticVisible = { fg = colorscheme.syntaxError, bg = bg },
+		BufferLineErrorDiagnosticSelected = {
 			fg = colorscheme.syntaxError,
 			bg = colorscheme.editorBackground,
 		},
 
-		warning = { fg = colorscheme.warningEmphasis, bg = bg },
-		warning_visible = { fg = colorscheme.warningEmphasis, bg = bg },
-		warning_selected = {
+		BufferLineWarning = { fg = colorscheme.warningEmphasis, bg = bg },
+		BufferLineWarningVisible = { fg = colorscheme.warningEmphasis, bg = bg },
+		BufferLineWarningSelected = {
 			fg = colorscheme.warningEmphasis,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
-		warning_diagnostic = { fg = colorscheme.warningEmphasis, bg = bg },
-		warning_diagnostic_visible = { fg = colorscheme.warningEmphasis, bg = bg },
-		warning_diagnostic_selected = {
+		BufferLineWarningDiagnostic = { fg = colorscheme.warningEmphasis, bg = bg },
+		BufferLineWarningDiagnosticVisible = { fg = colorscheme.warningEmphasis, bg = bg },
+		BufferLineWarningDiagnosticSelected = {
 			fg = colorscheme.warningEmphasis,
 			bg = colorscheme.editorBackground,
 		},
 
-		info = { fg = colorscheme.syntaxFunction, bg = bg },
-		info_visible = { fg = colorscheme.syntaxFunction, bg = bg },
-		info_selected = {
+		BufferLineInfo = { fg = colorscheme.syntaxFunction, bg = bg },
+		BufferLineInfoVisible = { fg = colorscheme.syntaxFunction, bg = bg },
+		BufferLineInfoSelected = {
 			fg = colorscheme.syntaxFunction,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
-		info_diagnostic = { fg = colorscheme.syntaxFunction, bg = bg },
-		info_diagnostic_visible = { fg = colorscheme.syntaxFunction, bg = bg },
-		info_diagnostic_selected = {
+		BufferLineInfoDiagnostic = { fg = colorscheme.syntaxFunction, bg = bg },
+		BufferLineInfoDiagnosticVisible = { fg = colorscheme.syntaxFunction, bg = bg },
+		BufferLineInfoDiagnosticSelected = {
 			fg = colorscheme.syntaxFunction,
 			bg = colorscheme.editorBackground,
 		},
 
-		hint = { fg = colorscheme.successText, bg = bg },
-		hint_visible = { fg = colorscheme.successText, bg = bg },
-		hint_selected = {
+		BufferLineHint = { fg = colorscheme.successText, bg = bg },
+		BufferLineHintVisible = { fg = colorscheme.successText, bg = bg },
+		BufferLineHintSelected = {
 			fg = colorscheme.successText,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
-		hint_diagnostic = { fg = colorscheme.successText, bg = bg },
-		hint_diagnostic_visible = { fg = colorscheme.successText, bg = bg },
-		hint_diagnostic_selected = {
+		BufferLineHintDiagnostic = { fg = colorscheme.successText, bg = bg },
+		BufferLineHintDiagnosticVisible = { fg = colorscheme.successText, bg = bg },
+		BufferLineHintDiagnosticSelected = {
 			fg = colorscheme.successText,
 			bg = colorscheme.editorBackground,
 		},
 
-		diagnostic = { fg = colorscheme.lineNumberText, bg = bg },
-		diagnostic_visible = { fg = colorscheme.lineNumberText, bg = bg },
-		diagnostic_selected = {
+		BufferLineDiagnostic = { fg = colorscheme.lineNumberText, bg = bg },
+		BufferLineDiagnosticVisible = { fg = colorscheme.lineNumberText, bg = bg },
+		BufferLineDiagnosticSelected = {
 			fg = colorscheme.lineNumberText,
 			bg = colorscheme.editorBackground,
 			italic = config.italics.bufferline or false,
 		},
 
-		modified = { fg = colorscheme.warningText, bg = bg },
-		modified_selected = {
+		BufferLineModified = { fg = colorscheme.warningText, bg = bg },
+		BufferLineModifiedSelected = {
 			fg = colorscheme.warningText,
 			bg = colorscheme.editorBackground,
 		},
