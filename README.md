@@ -1,4 +1,6 @@
-# Aeonian Nvim
+# Carian Nvim
+
+![Slideshow previewing theme with different files](./assets/slideshow.gif)
 
 A neovim theme inspired by Ranni color palette from Elden Ring
 
