@@ -48,10 +48,10 @@ function M.pick()
 
 	if vim.o.background == "light" then
 		colorscheme.editorBackground = p.c0
-		colorscheme.sidebarBackground = p.c32
-		colorscheme.popupBackground = p.c34
-		colorscheme.floatingWindowBackground = p.c34
-		colorscheme.menuOptionBackground = p.c36
+		colorscheme.sidebarBackground = p.c11
+		colorscheme.popupBackground = p.c10
+		colorscheme.floatingWindowBackground = p.c6
+		colorscheme.menuOptionBackground = p.c8
 
 		colorscheme.mainText = p.c1
 		colorscheme.emphasisText = p.c14
@@ -81,9 +81,9 @@ function M.pick()
 		colorscheme.terminalGray = p.c4
 	else
 		colorscheme.editorBackground = p.c1
-		colorscheme.sidebarBackground = p.c20
-		colorscheme.popupBackground = p.c21
-		colorscheme.floatingWindowBackground = p.c22
+		colorscheme.sidebarBackground = p.c23
+		colorscheme.popupBackground = p.c23
+		colorscheme.floatingWindowBackground = p.c20
 		colorscheme.menuOptionBackground = p.c23
 
 		colorscheme.mainText = p.c0
@@ -115,6 +115,29 @@ function M.pick()
 		colorscheme.foregroundEmphasis = p.c0
 		colorscheme.terminalGray = p.c32
 	end
+
+	colorscheme.terminal = {
+		black = p.c4,
+		red = p.c5,
+		green = p.c6,
+		yellow = p.c7,
+		blue = p.c8,
+		magenta = p.c9,
+		cyan = p.c10,
+		white = p.c11,
+
+		bright_black = p.c12,
+		bright_red = p.c13,
+		bright_green = p.c14,
+		bright_yellow = p.c15,
+		bright_blue = p.c16,
+		bright_magenta = p.c17,
+		bright_cyan = p.c18,
+		bright_white = p.c19,
+
+		background = colorscheme.editorBackground,
+		foreground = colorscheme.mainText,
+	}
 
 	return colorscheme
 end

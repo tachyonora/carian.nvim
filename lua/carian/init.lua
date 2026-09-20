@@ -7,24 +7,27 @@ local utils = require("carian.utils")
 local theme = {}
 
 local function set_terminal_colors(colorscheme)
-	vim.g.terminal_color_0 = colorscheme.editorBackground
-	vim.g.terminal_color_1 = colorscheme.syntaxError
-	vim.g.terminal_color_2 = colorscheme.successText
-	vim.g.terminal_color_3 = colorscheme.warningEmphasis
-	vim.g.terminal_color_4 = colorscheme.syntaxFunction
-	vim.g.terminal_color_5 = colorscheme.syntaxKeyword
-	vim.g.terminal_color_6 = colorscheme.linkText
-	vim.g.terminal_color_7 = colorscheme.mainText
-	vim.g.terminal_color_8 = colorscheme.inactiveText
-	vim.g.terminal_color_9 = colorscheme.errorText
-	vim.g.terminal_color_10 = colorscheme.stringText
-	vim.g.terminal_color_11 = colorscheme.warningText
-	vim.g.terminal_color_12 = colorscheme.syntaxOperator
-	vim.g.terminal_color_13 = colorscheme.syntaxError
-	vim.g.terminal_color_14 = colorscheme.stringText
-	vim.g.terminal_color_15 = colorscheme.commentText
-	vim.g.terminal_color_background = colorscheme.editorBackground
-	vim.g.terminal_color_foreground = colorscheme.mainText
+	local t = colorscheme.terminal
+
+	vim.g.terminal_color_0 = t.black
+	vim.g.terminal_color_1 = t.red
+	vim.g.terminal_color_2 = t.green
+	vim.g.terminal_color_3 = t.yellow
+	vim.g.terminal_color_4 = t.blue
+	vim.g.terminal_color_5 = t.magenta
+	vim.g.terminal_color_6 = t.cyan
+	vim.g.terminal_color_7 = t.white
+	vim.g.terminal_color_8 = t.bright_black
+	vim.g.terminal_color_9 = t.bright_red
+	vim.g.terminal_color_10 = t.bright_green
+	vim.g.terminal_color_11 = t.bright_yellow
+	vim.g.terminal_color_12 = t.bright_blue
+	vim.g.terminal_color_13 = t.bright_magenta
+	vim.g.terminal_color_14 = t.bright_cyan
+	vim.g.terminal_color_15 = t.bright_white
+
+	vim.g.terminal_color_background = t.background
+	vim.g.terminal_color_foreground = t.foreground
 end
 
 local function set_groups(colorscheme)
@@ -272,6 +275,7 @@ local function set_groups(colorscheme)
 
 	groups = vim.tbl_extend("force", groups, cmp.highlights())
 	groups = vim.tbl_extend("force", groups, ibl.highlights(colorscheme))
+	groups = vim.tbl_extend("force", groups, bufferline.highlights(colorscheme, config))
 
 	groups =
 		vim.tbl_extend("force", groups, type(config.overrides) == "function" and config.overrides() or config.overrides)
@@ -283,9 +287,6 @@ end
 
 function theme.setup(values)
 	setmetatable(config, { __index = vim.tbl_extend("force", config.defaults, values) })
-
-	theme.bufferline = { highlights = {} }
-	theme.bufferline.highlights = bufferline.highlights(config)
 end
 
 function theme.colorscheme()

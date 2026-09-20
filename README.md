@@ -1,6 +1,6 @@
 # Aeonian Nvim
 
-A neovim theme inspired by Malenia/Scarlet Rot color palette from Elden Ring
+A neovim theme inspired by Ranni color palette from Elden Ring
 
 ![Slide show with themed dashboard, C source code and Lua config files](https://i.imgur.com/xy5EQ6i.gif)
 
@@ -12,7 +12,7 @@ A neovim theme inspired by Malenia/Scarlet Rot color palette from Elden Ring
 ```lua 
 {
     "tachyonora/carian.nvim",
-    url = "https://gitlab.com/tachyonora/carian.nvim",
+    lazy = false,
     priority = 1000,
 }
 ```
