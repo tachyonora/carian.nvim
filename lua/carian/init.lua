@@ -1,12 +1,12 @@
 local bufferline = require("carian.integrations.bufferline")
 local cmp = require("carian.integrations.cmp")
-local colorscheme = require("carian.colorscheme")
+local colorscheme_module = require("carian.colorscheme")
 local ibl = require("carian.integrations.ibl")
 local config = require("carian.config")
 local utils = require("carian.utils")
 local theme = {}
 
-local function set_terminal_colors()
+local function set_terminal_colors(colorscheme)
 	vim.g.terminal_color_0 = colorscheme.editorBackground
 	vim.g.terminal_color_1 = colorscheme.syntaxError
 	vim.g.terminal_color_2 = colorscheme.successText
@@ -27,7 +27,7 @@ local function set_terminal_colors()
 	vim.g.terminal_color_foreground = colorscheme.mainText
 end
 
-local function set_groups()
+local function set_groups(colorscheme)
 	local bg = config.transparent and "NONE" or colorscheme.editorBackground
 	local diff_add = utils.shade(colorscheme.successText, 0.5, colorscheme.editorBackground)
 	local diff_delete = utils.shade(colorscheme.syntaxError, 0.5, colorscheme.editorBackground)
@@ -35,7 +35,6 @@ local function set_groups()
 	local diff_text = utils.shade(colorscheme.warningEmphasis, 0.5, colorscheme.editorBackground)
 
 	local groups = {
-		-- base
 		Normal = { fg = colorscheme.mainText, bg = bg },
 		LineNr = { fg = colorscheme.lineNumberText },
 		ColorColumn = {
@@ -70,7 +69,6 @@ local function set_groups()
 		MatchParen = { fg = colorscheme.syntaxError, bg = bg },
 		ModeMsg = { link = "Normal" },
 		MsgArea = { link = "Normal" },
-		-- MsgSeparator = {},
 		MoreMsg = { fg = colorscheme.syntaxFunction },
 		NonText = { fg = utils.shade(colorscheme.editorBackground, 0.30) },
 		NormalFloat = { bg = colorscheme.floatingWindowBackground },
@@ -134,14 +132,12 @@ local function set_groups()
 		Parameter = { fg = colorscheme.mainText },
 		Statement = { fg = colorscheme.syntaxError },
 		Conditional = { fg = colorscheme.syntaxError },
-		-- Repeat = {},
 		Label = { fg = colorscheme.syntaxFunction },
 		Operator = { fg = colorscheme.syntaxError },
 		Keyword = { link = "Statement", italic = config.italics.keywords or false },
 		Exception = { fg = colorscheme.syntaxError },
 
 		PreProc = { link = "Keyword" },
-		-- Include = {},
 		Define = { fg = colorscheme.syntaxKeyword },
 		Macro = { link = "Define" },
 		PreCondit = { fg = colorscheme.syntaxError },
@@ -150,10 +146,6 @@ local function set_groups()
 		Struct = { link = "Type" },
 		Class = { link = "Type" },
 
-		-- StorageClass = {},
-		-- Structure = {},
-		-- Typedef = {},
-
 		Attribute = { link = "Character" },
 		Punctuation = { fg = colorscheme.syntaxOperator },
 		Special = { fg = colorscheme.syntaxOperator },
@@ -161,7 +153,6 @@ local function set_groups()
 		SpecialChar = { fg = colorscheme.syntaxError },
 		Tag = { fg = colorscheme.stringText },
 		Delimiter = { fg = colorscheme.syntaxOperator },
-		-- SpecialComment = {},
 		Debug = { fg = colorscheme.specialKeyword },
 
 		Underlined = { underline = true },
@@ -170,13 +161,6 @@ local function set_groups()
 		Ignore = { fg = colorscheme.editorBackground },
 		Error = { link = "ErrorMsg" },
 		Todo = { fg = colorscheme.warningText, bold = true },
-
-		-- LspReferenceText = {},
-		-- LspReferenceRead = {},
-		-- LspReferenceWrite = {},
-		-- LspCodeLens = {},
-		-- LspCodeLensSeparator = {},
-		-- LspSignatureActiveParameter = {},
 
 		DiagnosticError = { link = "Error" },
 		DiagnosticWarn = { link = "WarningMsg" },
@@ -190,30 +174,9 @@ local function set_groups()
 		DiagnosticUnderlineWarn = { undercurl = true, link = "DiagnosticWarn" },
 		DiagnosticUnderlineInfo = { undercurl = true, link = "DiagnosticInfo" },
 		DiagnosticUnderlineHint = { undercurl = true, link = "DiagnosticHint" },
-		-- DiagnosticFloatingError = {},
-		-- DiagnosticFloatingWarn = {},
-		-- DiagnosticFloatingInfo = {},
-		-- DiagnosticFloatingHint = {},
-		-- DiagnosticSignError = {},
-		-- DiagnosticSignWarn = {},
-		-- DiagnosticSignInfo = {},
-		-- DiagnosticSignHint = {},
-
-		-- Tree-Sitter groups are defined with an "@" symbol, which must be
-		-- specially handled to be valid lua code, we do this via the special
-		-- sym function. The following are all valid ways to call the sym function,
-		-- for more details see https://www.lua.org/pil/5.html
-		--
-		-- sym("@text.literal")
-		-- sym('@text.literal')
-		-- sym"@text.literal"
-		-- sym'@text.literal'
-		--
-		-- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
 		["@text"] = { fg = colorscheme.mainText },
 		["@texcolorscheme.literal"] = { link = "Property" },
-		-- ["@texcolorscheme.reference"] = {},
 		["@texcolorscheme.strong"] = { link = "Bold" },
 		["@texcolorscheme.italic"] = { link = "Italic" },
 		["@texcolorscheme.title"] = { link = "Keyword" },
@@ -239,31 +202,22 @@ local function set_groups()
 		["@constant"] = { link = "Constant" },
 		["@constant.builtin"] = { fg = colorscheme.syntaxFunction },
 		["@constancolorscheme.builtin"] = { link = "Keyword" },
-		-- ["@constancolorscheme.macro"] = {},
-		-- ["@define"] = {},
-		-- ["@macro"] = {},
 		["@string"] = { link = "String" },
 		["@string.escape"] = { fg = utils.shade(colorscheme.stringText, 0.45) },
 		["@string.special"] = { fg = utils.shade(colorscheme.syntaxFunction, 0.45) },
-		-- ["@character"] = {},
-		-- ["@character.special"] = {},
 		["@number"] = { link = "Number" },
 		["@boolean"] = { link = "Boolean" },
-		-- ["@float"] = {},
 		["@function"] = {
 			link = "Function",
 			italic = config.italics.functions or false,
 		},
 		["@function.call"] = { link = "Function" },
 		["@function.builtin"] = { link = "Function" },
-		-- ["@function.macro"] = {},
 		["@parameter"] = { link = "Parameter" },
 		["@method"] = { link = "Function" },
 		["@field"] = { link = "Property" },
 		["@property"] = { link = "Property" },
 		["@constructor"] = { fg = colorscheme.syntaxFunction },
-		-- ["@conditional"] = {},
-		-- ["@repeat"] = {},
 		["@label"] = { link = "Label" },
 		["@operator"] = { link = "Operator" },
 		["@exception"] = { link = "Exception" },
@@ -282,12 +236,8 @@ local function set_groups()
 		["@type.builtin"] = { fg = colorscheme.syntaxFunction },
 		["@type.qualifier"] = { fg = colorscheme.syntaxFunction },
 		["@keyword"] = { link = "Keyword" },
-		-- ["@storageclass"] = {},
-		-- ["@structure"] = {},
 		["@namespace"] = { link = "Type" },
 		["@annotation"] = { link = "Label" },
-		-- ["@include"] = {},
-		-- ["@preproc"] = {},
 		["@debug"] = { fg = colorscheme.specialKeyword },
 		["@tag"] = { link = "Tag" },
 		["@tag.builtin"] = { link = "Tag" },
@@ -299,13 +249,10 @@ local function set_groups()
 		["@warning"] = { link = "WarningMsg" },
 		["@info"] = { fg = colorscheme.syntaxFunction },
 
-		-- Specific languages
-		-- overrides
-		["@label.json"] = { fg = colorscheme.property }, -- For json
-		["@label.help"] = { link = "@texcolorscheme.uri" }, -- For help files
-		["@texcolorscheme.uri.html"] = { underline = true }, -- For html
+		["@label.json"] = { fg = colorscheme.property },
+		["@label.help"] = { link = "@texcolorscheme.uri" },
+		["@texcolorscheme.uri.html"] = { underline = true },
 
-		-- semantic highlighting
 		["@lsp.type.namespace"] = { link = "@namespace" },
 		["@lsp.type.type"] = { link = "@type" },
 		["@lsp.type.class"] = { link = "@type" },
@@ -323,11 +270,9 @@ local function set_groups()
 		["@lsp.typemod.function.readonly"] = { link = "@function" },
 	}
 
-	-- integrations
 	groups = vim.tbl_extend("force", groups, cmp.highlights())
 	groups = vim.tbl_extend("force", groups, ibl.highlights(colorscheme))
 
-	-- overrides
 	groups =
 		vim.tbl_extend("force", groups, type(config.overrides) == "function" and config.overrides() or config.overrides)
 
@@ -345,7 +290,7 @@ end
 
 function theme.colorscheme()
 	if vim.version().minor < 8 then
-		vim.notify("Neovim 0.8+ is required for carian colorscheme", vim.log.levels.ERROR, { title = "Min Theme" })
+		vim.notify("Neovim 0.8+ is required for carian colorscheme", vim.log.levels.ERROR, { title = "Carian Theme" })
 		return
 	end
 
@@ -358,8 +303,10 @@ function theme.colorscheme()
 	vim.o.termguicolors = true
 	vim.g.colors_name = "carian"
 
-	set_terminal_colors()
-	set_groups()
+	local colorscheme = colorscheme_module.pick()
+
+	set_terminal_colors(colorscheme)
+	set_groups(colorscheme)
 end
 
 return theme
