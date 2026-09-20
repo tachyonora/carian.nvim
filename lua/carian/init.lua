@@ -273,7 +273,7 @@ local function set_groups(colorscheme)
 		["@lsp.typemod.function.readonly"] = { link = "@function" },
 	}
 
-	groups = vim.tbl_extend("force", groups, cmp.highlights())
+	groups = vim.tbl_extend("force", groups, cmp.highlights(colorscheme))
 	groups = vim.tbl_extend("force", groups, ibl.highlights(colorscheme))
 	groups = vim.tbl_extend("force", groups, bufferline.highlights(colorscheme, config))
 

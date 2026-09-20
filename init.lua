@@ -313,7 +313,7 @@ require("lazy").setup({
 	},
 })
 
-local theme = require("carian/init")
+local theme = require("carian.init")
 
 theme.setup({
 	theme = "auto",
