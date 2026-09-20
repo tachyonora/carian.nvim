@@ -2,8 +2,6 @@
 
 A neovim theme inspired by Ranni color palette from Elden Ring
 
-![Slide show with themed dashboard, C source code and Lua config files](https://i.imgur.com/xy5EQ6i.gif)
-
 <br></br>
 
 ### Installation
@@ -39,4 +37,4 @@ or simply run:
 
 <br></br>
 
-<p style="text-align: center;">Copyright &copy; 2026 - <a href="https://gitlab.com/tachyonora" target="_blank">tachyonora</a></p>
+<p style="text-align: center;">Copyright &copy; 2026 - <a href="https://github.com/tachyonora" target="_blank">tachyonora</a></p>
