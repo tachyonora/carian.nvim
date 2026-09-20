@@ -90,6 +90,8 @@ local function set_groups(colorscheme)
 			fg = colorscheme.inactiveText,
 			bg = colorscheme.sidebarBackground,
 		},
+		WinBar = { fg = colorscheme.mainText, bg = bg },
+		WinBarNC = { fg = colorscheme.inactiveText, bg = colorscheme.sidebarBackground },
 		TabLine = {
 			bg = colorscheme.sidebarBackground,
 			fg = colorscheme.inactiveText,
