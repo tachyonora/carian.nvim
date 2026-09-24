@@ -57,6 +57,9 @@ local function set_groups(colorscheme)
 		EndOfBuffer = { fg = colorscheme.syntaxKeyword },
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
+		OkMsg = { fg = colorscheme.syntaxFunction },
+		PreInsert = { fg = colorscheme.syntaxFunction },
+		Added = { fg = colorscheme.syntaxFunction },
 		ErrorMsg = { fg = colorscheme.syntaxError },
 		VertSplit = { fg = colorscheme.windowBorder, bg = bg },
 		Winseparator = { link = "VertSplit" },
@@ -167,6 +170,7 @@ local function set_groups(colorscheme)
 		Error = { link = "ErrorMsg" },
 		Todo = { fg = colorscheme.warningText, bold = true },
 
+		DiagnosticOk = { fg = colorscheme.syntaxFunction },
 		DiagnosticError = { link = "Error" },
 		DiagnosticWarn = { link = "WarningMsg" },
 		DiagnosticInfo = { fg = colorscheme.syntaxFunction },
